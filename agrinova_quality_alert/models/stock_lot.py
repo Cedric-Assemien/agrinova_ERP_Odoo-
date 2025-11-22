@@ -26,7 +26,11 @@ class StockLot(models.Model):
     def _compute_days_to_expiry(self):
         for lot in self:
             if lot.expiration_date:
-                delta = lot.expiration_date - fields.Date.today()
+                # Convert datetime to date if needed
+                expiry_date = lot.expiration_date
+                if isinstance(expiry_date, datetime):
+                    expiry_date = expiry_date.date()
+                delta = expiry_date - fields.Date.today()
                 lot.days_to_expiry = delta.days
             else:
                 lot.days_to_expiry = 9999

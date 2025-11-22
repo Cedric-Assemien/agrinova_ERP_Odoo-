@@ -7,7 +7,7 @@
         <field name="phone_field">partner_id.mobile</field>
         <field name="body">Bonjour {{1}},
 
-Votre commande #{{2}} a été confirmée !
+Votre commande {{2}} a été confirmée !
 Montant: {{3}} XOF
 Livraison prévue le: {{4}}
 
@@ -15,6 +15,7 @@ Merci de votre confiance.
 AGRINOVA SARL</field>
         <field name="header_type">text</field>
         <field name="variable_ids" eval="[
+            (5, 0, 0),
             (0, 0, {'name': '{{1}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'partner_id.name', 'demo_value': 'Client'}),
             (0, 0, {'name': '{{2}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'name', 'demo_value': 'S00001'}),
             (0, 0, {'name': '{{3}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'amount_total', 'demo_value': '10000'}),
@@ -38,6 +39,7 @@ Action requise !
 AGRINOVA</field>
         <field name="header_type">text</field>
         <field name="variable_ids" eval="[
+            (5, 0, 0),
             (0, 0, {'name': '{{1}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'product_id.name', 'demo_value': 'Produit X'}),
             (0, 0, {'name': '{{2}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'name', 'demo_value': 'LOT001'}),
             (0, 0, {'name': '{{3}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'expiration_date', 'demo_value': '2025-12-31'}),
