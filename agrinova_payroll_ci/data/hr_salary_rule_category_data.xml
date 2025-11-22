@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Catégories de règles salariales -->
+    <record id="rule_category_brut" model="hr.salary.rule.category">
+        <field name="name">Salaire Brut</field>
+        <field name="code">BRUT</field>
+    </record>
+
+    <record id="rule_category_cnps" model="hr.salary.rule.category">
+        <field name="name">CNPS</field>
+        <field name="code">CNPS</field>
+    </record>
+
+    <record id="rule_category_its" model="hr.salary.rule.category">
+        <field name="name">ITS</field>
+        <field name="code">ITS</field>
+    </record>
+
+    <record id="rule_category_net" model="hr.salary.rule.category">
+        <field name="name">Net à Payer</field>
+        <field name="code">NET</field>
+    </record>
+</odoo>

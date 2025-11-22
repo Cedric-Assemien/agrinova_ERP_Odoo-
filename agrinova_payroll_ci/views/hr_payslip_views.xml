@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue formulaire bulletin -->
+    <record id="view_hr_payslip_form_ci" model="ir.ui.view">
+        <field name="name">hr.payslip.form.ci</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']" position="after">
+                <group string="Détails CI">
+                    <field name="cnps_employee"/>
+                    <field name="cnps_employer"/>
+                    <field name="net_imposable"/>
+                    <field name="its_amount"/>
+                </group>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_export_cnps" string="Export CNPS" type="object" class="btn-primary"/>
+                <button name="action_export_its" string="Export ITS" type="object" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Menu Principal AGRINOVA -->
+        <menuitem 
+            id="menu_agrinova_root"
+            name="AGRINOVA"
+            sequence="5"
+            web_icon="agrinova,static/description/icon.png"
+            groups="group_agrinova_user"/>
+        
+        <!-- Sous-menu Configuration -->
+        <menuitem 
+            id="menu_agrinova_config"
+            name="Configuration"
+            parent="menu_agrinova_root"
+            sequence="100"
+            groups="group_agrinova_admin"/>
+        
+        <menuitem 
+            id="menu_agrinova_settings"
+            name="Paramètres"
+            parent="menu_agrinova_config"
+            action="action_agrinova_settings"
+            sequence="1"
+            groups="group_agrinova_admin"/>
+        
+        <menuitem 
+            id="menu_agrinova_config_main"
+            name="Configurations"
+            parent="menu_agrinova_config"
+            action="action_agrinova_config"
+            sequence="10"
+            groups="group_agrinova_admin"/>
+        
+        <!-- Sous-menu Dashboard -->
+        <menuitem 
+            id="menu_agrinova_dashboard"
+            name="Tableau de Bord"
+            parent="menu_agrinova_root"
+            sequence="1"
+            groups="group_agrinova_user"/>
+        
+        <!-- Sous-menu Production -->
+        <menuitem 
+            id="menu_agrinova_production"
+            name="Production"
+            parent="menu_agrinova_root"
+            sequence="10"
+            groups="group_agrinova_production"/>
+        
+        <!-- Sous-menu Qualité -->
+        <menuitem 
+            id="menu_agrinova_quality"
+            name="Qualité"
+            parent="menu_agrinova_root"
+            sequence="20"
+            groups="group_agrinova_quality"/>
+        
+        <!-- Sous-menu Commercial -->
+        <menuitem 
+            id="menu_agrinova_sales"
+            name="Commercial"
+            parent="menu_agrinova_root"
+            sequence="30"
+            groups="group_agrinova_sales"/>
+        
+        <!-- Sous-menu Stock -->
+        <menuitem 
+            id="menu_agrinova_stock"
+            name="Stock"
+            parent="menu_agrinova_root"
+            sequence="40"
+            groups="group_agrinova_stock"/>
+        
+        <!-- Sous-menu RH &amp; Paie -->
+        <menuitem 
+            id="menu_agrinova_hr"
+            name="RH &amp; Paie"
+            parent="menu_agrinova_root"
+            sequence="50"
+            groups="group_agrinova_hr"/>
+            
+        <!-- Sous-menu Comptabilité -->
+        <menuitem 
+            id="menu_agrinova_accounting"
+            name="Comptabilité"
+            parent="menu_agrinova_root"
+            sequence="60"
+            groups="group_agrinova_accounting"/>
+        
+        <!-- Sous-menu Reporting -->
+        <menuitem 
+            id="menu_agrinova_reporting"
+            name="Rapports"
+            parent="menu_agrinova_root"
+            sequence="70"
+            groups="group_agrinova_manager"/>
+        
+    </data>
+</odoo>

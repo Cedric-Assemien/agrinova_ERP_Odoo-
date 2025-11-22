@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payslip_report_ci" model="ir.actions.report">
+        <field name="name">Bulletin de Paie CI</field>
+        <field name="model">hr.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">agrinova_payroll_ci.report_payslip_ci</field>
+        <field name="report_file">agrinova_payroll_ci.report_payslip_ci</field>
+        <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_payslip_ci">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="payslip">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Bulletin de Paie - Côte d'Ivoire</h2>
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <strong>Employé:</strong> <span t-field="payslip.employee_id.name"/><br/>
+                                <strong>Matricule:</strong> <span t-field="payslip.employee_id.identification_id"/><br/>
+                                <strong>CNPS:</strong> <span t-field="payslip.contract_id.cnps_number"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Période:</strong> <span t-field="payslip.date_from"/> au <span t-field="payslip.date_to"/><br/>
+                                <strong>Poste:</strong> <span t-field="payslip.contract_id.job_id.name"/>
+                            </div>
+                        </div>
+                        <table class="table table-sm mt-4">
+                            <thead>
+                                <tr>
+                                    <th>Libellé</th>
+                                    <th class="text-right">Montant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="payslip.line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.name"/></td>
+                                        <td class="text-right"><span t-field="line.total"/> XOF</td>
+                                    </tr>
+                                </t>
+                                <tr class="font-weight-bold">
+                                    <td>Net à Payer</td>
+                                    <td class="text-right"><span t-field="payslip.net_wage"/> XOF</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

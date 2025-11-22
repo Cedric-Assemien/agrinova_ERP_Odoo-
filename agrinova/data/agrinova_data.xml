@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Configuration par défaut AGRINOVA -->
+        <record id="default_agrinova_config" model="agrinova.config">
+            <field name="name">Configuration AGRINOVA par défaut</field>
+            <field name="active" eval="True"/>
+            <field name="fiscal_year_start" eval="time.strftime('%Y-01-01')"/>
+            <field name="production_yield_warning_threshold">85.0</field>
+            <field name="expiry_alert_days_before">30</field>
+            <field name="quality_control_mandatory" eval="True"/>
+            <field name="enable_customer_portal" eval="True"/>
+            <field name="enable_email_notifications" eval="True"/>
+            <field name="enable_whatsapp_notifications" eval="False"/>
+            <field name="enable_mobile_money" eval="False"/>
+            <field name="payroll_cnps_rate_employee">6.3</field>
+            <field name="payroll_cnps_rate_employer">16.55</field>
+            <field name="payroll_cnps_ceiling">1647315.0</field>
+            <field name="auto_update_currency_rates" eval="True"/>
+            <field name="bceao_update_time">02:00</field>
+            <field name="dashboard_refresh_interval">300</field>
+        </record>
+        
+    </data>
+</odoo>

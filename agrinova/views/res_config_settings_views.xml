@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Extension paramètres configuration -->
+        <record id="res_config_settings_view_form_agrinova" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.agrinova</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <form position="inside">
+                    
+                    <!-- Section AGRINOVA -->
+                    <div class="app_settings_block" data-string="AGRINOVA" string="AGRINOVA" data-key="agrinova" groups="agrinova.group_agrinova_admin">
+                        <h2>Configuration AGRINOVA</h2>
+                        
+                        <!-- Production -->
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="agrinova_quality_control_mandatory"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_quality_control_mandatory"/>
+                                    <div class="text-muted">
+                                        Rendre obligatoire le contrôle qualité pour tous les produits finis
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"></div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_production_yield_warning_threshold" string="Seuil d'alerte rendement"/>
+                                    <field name="agrinova_production_yield_warning_threshold" class="oe_inline"/>
+                                    <span>%</span>
+                                    <div class="text-muted">
+                                        Alerter si le rendement est inférieur à ce seuil
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Qualité &amp; Alertes -->
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"></div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_expiry_alert_days_before" string="Alerte péremption"/>
+                                    <field name="agrinova_expiry_alert_days_before" class="oe_inline"/>
+                                    <span>jours avant</span>
+                                    <div class="text-muted">
+                                        Nombre de jours avant péremption pour déclencher une alerte
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Notifications -->
+                        <h3 class="mt32">Notifications</h3>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="agrinova_enable_email_notifications"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_enable_email_notifications"/>
+                                    <div class="text-muted">
+                                        Activer les notifications automatiques par email
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="agrinova_enable_whatsapp_notifications"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_enable_whatsapp_notifications"/>
+                                    <div class="text-muted">
+                                        Nécessite le module agrinova_whatsapp
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mobile Money -->
+                        <h3 class="mt32">Paiements</h3>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="agrinova_enable_mobile_money"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_enable_mobile_money" string="Paiements Mobile Money"/>
+                                    <div class="text-muted">
+                                        Orange Money &amp; MTN MoMo (nécessite agrinova_mobile_money)
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="agrinova_enable_customer_portal"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_enable_customer_portal" string="Portail client"/>
+                                    <div class="text-muted">
+                                        Permettre aux clients d'accéder à leurs commandes en ligne
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Paie CI -->
+                        <h3 class="mt32">Paie Côte d'Ivoire</h3>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"></div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_payroll_cnps_rate_employee" string="Taux CNPS employé"/>
+                                    <field name="agrinova_payroll_cnps_rate_employee" class="oe_inline"/>
+                                    <span>%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"></div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_payroll_cnps_rate_employer" string="Taux CNPS employeur"/>
+                                    <field name="agrinova_payroll_cnps_rate_employer" class="oe_inline"/>
+                                    <span>%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- BCEAO -->
+                        <h3 class="mt32">Taux de change BCEAO</h3>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="agrinova_auto_update_currency_rates"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_auto_update_currency_rates" string="Mise à jour automatique"/>
+                                    <div class="text-muted">
+                                        Import quotidien des taux BCEAO (nécessite agrinova_bceao)
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box" invisible="not agrinova_auto_update_currency_rates">
+                                <div class="o_setting_left_pane"></div>
+                                <div class="o_setting_right_pane">
+                                    <label for="agrinova_bceao_update_time" string="Heure de mise à jour"/>
+                                    <field name="agrinova_bceao_update_time" class="oe_inline"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </form>
+            </field>
+        </record>
+        
+
+        <!-- Action pour les paramètres -->
+        <record id="action_agrinova_settings" model="ir.actions.act_window">
+            <field name="name">Paramètres</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'agrinova'}</field>
+        </record>
+    </data>
+</odoo>

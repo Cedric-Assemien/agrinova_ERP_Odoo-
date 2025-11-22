@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Vue formulaire Configuration AGRINOVA -->
+        <record id="view_agrinova_config_form" model="ir.ui.view">
+            <field name="name">agrinova.config.form</field>
+            <field name="model">agrinova.config</field>
+            <field name="arch" type="xml">
+                <form string="Configuration AGRINOVA">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nom de configuration"/>
+                            </h1>
+                        </div>
+                        
+                        <group>
+                            <group>
+                                <field name="company_id" options="{'no_create': True}"/>
+                                <field name="active"/>
+                                <field name="fiscal_year_start"/>
+                            </group>
+                            <group>
+                                <field name="default_currency_id" options="{'no_create': True}"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <!-- Onglet Production -->
+                            <page string="Production" name="production">
+                                <group>
+                                    <group string="Paramètres généraux">
+                                        <field name="default_production_location_id"/>
+                                        <field name="production_yield_warning_threshold"/>
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <!-- Onglet Qualité -->
+                            <page string="Qualité" name="quality">
+                                <group>
+                                    <group string="Contrôle qualité">
+                                        <field name="quality_control_mandatory"/>
+                                        <field name="expiry_alert_days_before"/>
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <!-- Onglet Commercial -->
+                            <page string="Commercial" name="sales">
+                                <group>
+                                    <group string="Ventes">
+                                        <field name="default_payment_term_id"/>
+<field name="enable_customer_portal"/>
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <!-- Onglet Notifications -->
+                            <page string="Notifications" name="notifications">
+                                <group>
+                                    <group string="Canaux de notification">
+                                        <field name="enable_email_notifications"/>
+                                        <field name="enable_whatsapp_notifications"/>
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <!-- Onglet Paiements -->
+                            <page string="Paiements" name="payments">
+                                <group>
+                                    <group string="Mobile Money">
+                                        <field name="enable_mobile_money"/>
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <!-- Onglet Paie -->
+                            <page string="Paie" name="payroll">
+                                <group>
+                                    <group string="CNPS (Côte d'Ivoire)">
+                                        <field name="payroll_cnps_rate_employee"/>
+                                        <field name="payroll_cnps_rate_employer"/>
+                                        <field name="payroll_cnps_ceiling"/>
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <!-- Onglet BCEAO -->
+                            <page string="Taux de change" name="currency">
+                                <group>
+                                    <group string="BCEAO">
+                                        <field name="auto_update_currency_rates"/>
+                                        <field name="bceao_update_time"/>
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <!-- Onglet Dashboard -->
+                            <page string="Dashboard" name="dashboard">
+                                <group>
+                                    <group string="Affichage">
+                                        <field name="dashboard_refresh_interval"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Vue liste Configuration AGRINOVA -->
+        <record id="view_agrinova_config_tree" model="ir.ui.view">
+            <field name="name">agrinova.config.tree</field>
+            <field name="model">agrinova.config</field>
+            <field name="arch" type="xml">
+                <list string="Configurations AGRINOVA">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                    <field name="fiscal_year_start"/>
+                </list>
+            </field>
+        </record>
+        
+        <!-- Action Configuration AGRINOVA -->
+        <record id="action_agrinova_config" model="ir.actions.act_window">
+            <field name="name">Configuration AGRINOVA</field>
+            <field name="res_model">agrinova.config</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Créer une configuration AGRINOVA
+                </p>
+                <p>
+                    La configuration permet de personnaliser les paramètres métier.
+                </p>
+            </field>
+        </record>
+        
+        
+    </data>
+</odoo>

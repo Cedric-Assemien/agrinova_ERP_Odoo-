@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mobile_depot_form_api" model="ir.ui.view">
+        <field name="name">mobile.depot.form.api</field>
+        <field name="model">mobile.depot</field>
+        <field name="inherit_id" ref="mobile_money_management.view_mobile_depot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='montant']" position="after">
+                <field name="api_transaction_id"/>
+                <field name="api_status"/>
+                <field name="payment_id"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_create_payment" string="Créer Paiement" type="object" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

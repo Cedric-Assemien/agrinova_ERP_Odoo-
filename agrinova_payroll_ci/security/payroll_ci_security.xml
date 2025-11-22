@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Catégorie de module -->
+    <record id="module_category_payroll_ci" model="ir.module.category">
+        <field name="name">Paie Côte d'Ivoire</field>
+        <field name="description">Gestion de la paie CI</field>
+    </record>
+
+    <!-- Groupe Gestionnaire Paie CI -->
+    <record id="group_payroll_ci_manager" model="res.groups">
+        <field name="name">Gestionnaire Paie CI</field>
+        <field name="category_id" ref="module_category_payroll_ci"/>
+        <field name="implied_ids" eval="[(4, ref('hr_payroll.group_hr_payroll_user'))]"/>
+    </record>
+
+    <!-- Groupe Utilisateur Paie CI -->
+    <record id="group_payroll_ci_user" model="res.groups">
+        <field name="name">Utilisateur Paie CI</field>
+        <field name="category_id" ref="module_category_payroll_ci"/>
+        <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Type de structure de paie -->
+    <record id="payroll_structure_type_ci" model="hr.payroll.structure.type">
+        <field name="name">Employé CI</field>
+        <field name="country_id" ref="base.ci"/>
+    </record>
+
+    <!-- Structure de paie Côte d'Ivoire -->
+    <record id="payroll_structure_ci" model="hr.payroll.structure">
+        <field name="name">Paie Côte d'Ivoire</field>
+        <field name="type_id" ref="payroll_structure_type_ci"/>
+        <field name="country_id" ref="base.ci"/>
+    </record>
+</odoo>

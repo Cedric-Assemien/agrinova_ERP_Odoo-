@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bceao_provider_form" model="ir.ui.view">
+        <field name="name">bceao.rate.provider.form</field>
+        <field name="model">bceao.rate.provider</field>
+        <field name="arch" type="xml">
+            <form string="BCEAO Provider">
+                <header>
+                    <button name="action_manual_update" string="Mise à Jour Manuelle" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                        <field name="last_update" readonly="1"/>
+                        <field name="last_error" readonly="1" invisible="not last_error"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bceao_provider_tree" model="ir.ui.view">
+        <field name="name">bceao.rate.provider.tree</field>
+        <field name="model">bceao.rate.provider</field>
+        <field name="arch" type="xml">
+            <list string="BCEAO Providers">
+                <field name="name"/>
+                <field name="last_update"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_bceao_provider" model="ir.actions.act_window">
+        <field name="name">Taux BCEAO</field>
+        <field name="res_model">bceao.rate.provider</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_bceao_provider"
+              name="Taux BCEAO"
+              parent="account.menu_finance_configuration"
+              action="action_bceao_provider"
+              sequence="50"/>
+</odoo>

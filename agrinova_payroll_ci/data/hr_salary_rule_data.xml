@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Règle Salaire de Base -->
+    <record id="rule_salaire_base" model="hr.salary.rule">
+        <field name="name">Salaire de Base</field>
+        <field name="code">BASE</field>
+        <field name="category_id" ref="rule_category_brut"/>
+        <field name="sequence">1</field>
+        <field name="struct_id" ref="payroll_structure_ci"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.wage</field>
+    </record>
+
+    <!-- Règle CNPS Employé (6.3%) -->
+    <record id="rule_cnps_employee" model="hr.salary.rule">
+        <field name="name">CNPS Employé (6.3%)</field>
+        <field name="code">CNPS_EMP</field>
+        <field name="category_id" ref="rule_category_cnps"/>
+        <field name="sequence">100</field>
+        <field name="struct_id" ref="payroll_structure_ci"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+# Plafond CNPS 2024: 1,647,315 XOF
+base_cnps = min(contract.wage, 1647315)
+result = -base_cnps * 0.063
+        </field>
+    </record>
+
+    <!-- Règle CNPS Employeur (16.55%) -->
+    <record id="rule_cnps_employer" model="hr.salary.rule">
+        <field name="name">CNPS Employeur (16.55%)</field>
+        <field name="code">CNPS_EMPR</field>
+        <field name="category_id" ref="rule_category_cnps"/>
+        <field name="sequence">101</field>
+        <field name="struct_id" ref="payroll_structure_ci"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+# Plafond CNPS
+base_cnps = min(contract.wage, 1647315)
+result = base_cnps * 0.1655
+# Charge employeur (pas déduite du salaire)
+        </field>
+    </record>
+
+    <!-- Règle ITS -->
+    <record id="rule_its" model="hr.salary.rule">
+        <field name="name">ITS (Impôt sur Salaires)</field>
+        <field name="code">ITS</field>
+        <field name="category_id" ref="rule_category_its"/>
+        <field name="sequence">200</field>
+        <field name="struct_id" ref="payroll_structure_ci"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+# Calcul du net imposable (après CNPS employé)
+cnps_line = payslip.line_ids.filtered(lambda l: l.code == 'CNPS_EMP')
+cnps_employee = abs(cnps_line.total) if cnps_line else 0
+net_imposable = contract.wage - cnps_employee
+
+# Calcul ITS via méthode du payslip
+result = -payslip._calculate_its(net_imposable)
+        </field>
+    </record>
+
+    <!-- Règle Net à Payer -->
+    <record id="rule_net_pay" model="hr.salary.rule">
+        <field name="name">Net à Payer</field>
+        <field name="code">NET</field>
+        <field name="category_id" ref="rule_category_net"/>
+        <field name="sequence">999</field>
+        <field name="struct_id" ref="payroll_structure_ci"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+# Net = Brut - CNPS Employé - ITS
+result = categories.BRUT + categories.CNPS + categories.ITS
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+   <!-- view list -->
+  <record id="estate_locataire_view_tree" model="ir.ui.view">
+    <field name="name">estate.locataire.view</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_tree"/>
+    <field name="arch" type="xml">
+     <data>
+            <field name="street" position="before">
+                <field name="est_locataire" optional="hide"/>
+            </field>
+    </data>
+    </field>
+  </record>
+
+    <record id="action_estate_locataire" model="ir.actions.act_window">
+        <field name="name">Locataires</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('est_locataire', '=', True)]</field>
+        <field name="context">{'est_locataire': True}</field>
+        <field name="view_mode">list,form</field>
+    </record>
+ 
+</odoo>
+
+
+
+

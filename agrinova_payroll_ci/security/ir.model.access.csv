@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_export_cnps_wizard_manager,access.export.cnps.wizard.manager,model_export_cnps_wizard,group_payroll_ci_manager,1,1,1,1
+access_export_its_wizard_manager,access.export.its.wizard.manager,model_export_its_wizard,group_payroll_ci_manager,1,1,1,1
+access_export_cnps_wizard_user,access.export.cnps.wizard.user,model_export_cnps_wizard,group_payroll_ci_user,1,0,0,0
+access_export_its_wizard_user,access.export.its.wizard.user,model_export_its_wizard,group_payroll_ci_user,1,0,0,0

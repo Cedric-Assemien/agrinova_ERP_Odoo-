@@ -1,0 +1,275 @@
+<odoo>
+    <record id="action_mobile_transfert" model="ir.actions.act_window">
+        <field name="name">Transferts Internationaux</field>
+        <field name="res_model">mobile.transfert</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer votre premier transfert international
+            </p>
+        </field>
+    </record>
+
+    <record id="view_mobile_transfert_tree" model="ir.ui.view">
+        <field name="name">mobile.transfert.tree</field>
+        <field name="model">mobile.transfert</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="reference"/>
+                <field name="expediteur"/>
+                <field name="destinataire"/>
+                <field name="numero_international"/>
+                <field name="pays"/>
+                <field name="operateur"/>
+                <field name="montant"/>
+                <field name="date_operation"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mobile_transfert_form" model="ir.ui.view">
+        <field name="name">mobile.transfert.form</field>
+        <field name="model">mobile.transfert</field>
+        <field name="arch" type="xml">
+            <form string="Transfert International">
+                <sheet>
+                    <group>
+                        <field name="reference" readonly="1"/>
+                        <field name="expediteur"/>
+                        <field name="destinataire"/>
+                        <field name="numero_international"/>
+                        <field name="pays" readonly="1"/>
+                        <field name="operateur" readonly="1"/>
+                        <field name="montant"/>
+                        <field name="date_operation" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mobile_transfert_kanban" model="ir.ui.view">
+        <field name="name">mobile.transfert.kanban</field>
+        <field name="model">mobile.transfert</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="expediteur"/>
+                <field name="destinataire"/>
+                <field name="numero_international"/>
+                <field name="pays"/>
+                <field name="operateur"/>
+                <field name="montant"/>
+                <field name="date_operation"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <div class="oe_kanban_content">
+                                <div class="oe_kanban_details">
+                                    <div class="o_kanban_record_title">
+                                        <strong><field name="expediteur"/></strong> → <strong><field name="destinataire"/></strong>
+                                    </div>
+                                    <div class="o_kanban_record_subtitle">
+                                        <i class="fa fa-globe"/> <field name="pays"/> | <i class="fa fa-phone"/> <field name="numero_international"/>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <div class="badge badge-pill badge-warning">
+                                            <field name="montant"/> FCFA
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <span class="badge badge-secondary">
+                                                <field name="operateur"/>
+                                            </span>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <span class="text-muted">
+                                                <field name="date_operation"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vue graphique améliorée -->
+    <record id="view_mobile_transfert_graph" model="ir.ui.view">
+        <field name="name">mobile.transfert.graph</field>
+        <field name="model">mobile.transfert</field>
+        <field name="arch" type="xml">
+            <graph string="Analyses des Transferts Internationaux"
+                   type="bar"
+                   stacked="True"
+                   sample="1">
+                <field name="date_operation" interval="month" type="row"/>
+                <field name="montant" type="measure"/>
+                <field name="pays" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Vue graphique alternative - évolution temporelle -->
+    <record id="view_mobile_transfert_graph_line" model="ir.ui.view">
+        <field name="name">mobile.transfert.graph.line</field>
+        <field name="model">mobile.transfert</field>
+        <field name="arch" type="xml">
+            <graph string="Évolution Temporelle des Transferts"
+                   type="line"
+                   sample="1">
+                <field name="date_operation" interval="week" type="row"/>
+                <field name="montant" type="measure"/>
+                <field name="operateur" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Vue graphique - répartition par pays -->
+    <record id="view_mobile_transfert_graph_pie" model="ir.ui.view">
+        <field name="name">mobile.transfert.graph.pie</field>
+        <field name="model">mobile.transfert</field>
+        <field name="arch" type="xml">
+            <graph string="Répartition par Pays de Destination"
+                   type="pie"
+                   sample="1">
+                <field name="pays" type="row"/>
+                <field name="montant" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Vue pivot principale corrigée -->
+    <record id="view_mobile_transfert_pivot" model="ir.ui.view">
+        <field name="name">mobile.transfert.pivot</field>
+        <field name="model">mobile.transfert</field>
+        <field name="arch" type="xml">
+            <pivot string="Analyse Croisée des Transferts"
+                   sample="1">
+                <field name="date_operation" interval="month" type="row"/>
+                <field name="pays" type="col"/>
+                <field name="operateur" type="col"/>
+                <field name="montant" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Vue pivot simplifiée pour tableau de bord -->
+    <record id="view_mobile_transfert_pivot_dashboard" model="ir.ui.view">
+        <field name="name">mobile.transfert.pivot.dashboard</field>
+        <field name="model">mobile.transfert</field>
+        <field name="arch" type="xml">
+            <pivot string="Résumé des Transferts"
+                   sample="1">
+                <field name="pays" type="row"/>
+                <field name="operateur" type="row"/>
+                <field name="montant" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_mobile_transfert_search" model="ir.ui.view">
+        <field name="name">mobile.transfert.search</field>
+        <field name="model">mobile.transfert</field>
+        <field name="arch" type="xml">
+            <search string="Recherche Transferts Internationaux">
+                <field name="expediteur"/>
+                <field name="destinataire"/>
+                <field name="numero_international"/>
+                <field name="pays"/>
+                <field name="operateur"/>
+                <field name="montant"/>
+                <field name="date_operation"/>
+
+                <filter string="Aujourd'hui" name="today"
+                        domain="[('date_operation', '&gt;=', context_today()), ('date_operation', '&lt;', (context_today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Cette semaine" name="this_week"
+                        domain="[('date_operation', '&gt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                <filter string="Ce mois" name="this_month"
+                        domain="[('date_operation', '&gt;=', context_today().strftime('%Y-%m-01'))]"/>
+                <filter string="Cette année" name="this_year"
+                        domain="[('date_operation', '&gt;=', context_today().strftime('%Y-01-01'))]"/>
+
+                <separator/>
+
+                <filter string="Montant > 50000" name="high_amount"
+                        domain="[('montant', '&gt;', 50000)]"/>
+                <filter string="Montant &lt; 10000" name="low_amount"
+                        domain="[('montant', '&lt;', 10000)]"/>
+
+                <separator/>
+
+                <filter string="Sénégal" name="senegal"
+                        domain="[('pays', '=', 'sn')]"/>
+                <filter string="Mali" name="mali"
+                        domain="[('pays', '=', 'ml')]"/>
+                <filter string="Burkina Faso" name="burkina"
+                        domain="[('pays', '=', 'bf')]"/>
+
+                <group expand="1" string="Grouper par">
+                    <filter string="Expéditeur" name="group_expediteur" context="{'group_by':'expediteur'}"/>
+                    <filter string="Destinataire" name="group_destinataire" context="{'group_by':'destinataire'}"/>
+                    <filter string="Pays" name="group_pays" context="{'group_by':'pays'}"/>
+                    <filter string="Opérateur" name="group_operateur" context="{'group_by':'operateur'}"/>
+                    <filter string="Jour" name="group_day" context="{'group_by':'date_operation:day'}"/>
+                    <filter string="Mois" name="group_month" context="{'group_by':'date_operation:month'}"/>
+                    <filter string="Année" name="group_year" context="{'group_by':'date_operation:year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mobile_transfert_analysis" model="ir.actions.act_window">
+        <field name="name">Analyses des Transferts</field>
+        <field name="res_model">mobile.transfert</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                                      (0, 0, {'view_mode': 'graph', 'view_id': ref('view_mobile_transfert_graph')}),
+                                      (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_mobile_transfert_pivot')})]"/>
+        <field name="context">{
+            'search_default_this_month': 1,
+            'group_by_no_leaf': 1,
+            'group_by': []
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Aucun transfert à analyser
+            </p>
+            <p>
+                Les graphiques et tableaux croisés vous permettent d'analyser :
+                <ul>
+                    <li>L'évolution des transferts par période</li>
+                    <li>La répartition par pays de destination</li>
+                    <li>La performance des opérateurs</li>
+                    <li>Les tendances mensuelles et hebdomadaires</li>
+                </ul>
+            </p>
+        </field>
+    </record>
+
+    <record id="action_mobile_transfert_timeline" model="ir.actions.act_window">
+        <field name="name">Évolution Temporelle</field>
+        <field name="res_model">mobile.transfert</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_mobile_transfert_graph_line"/>
+        <field name="context">{
+            'search_default_this_year': 1
+        }</field>
+    </record>
+
+    <!-- Action pour la répartition géographique -->
+    <record id="action_mobile_transfert_countries" model="ir.actions.act_window">
+        <field name="name">Répartition Géographique</field>
+        <field name="res_model">mobile.transfert</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                                      (0, 0, {'view_mode': 'graph', 'view_id': ref('view_mobile_transfert_graph_pie')}),
+                                      (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_mobile_transfert_pivot_dashboard')})]"/>
+        <field name="context">{
+            'search_default_this_month': 1
+        }</field>
+    </record>
+</odoo>

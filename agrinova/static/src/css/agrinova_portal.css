@@ -1,0 +1,40 @@
+/* AGRINOVA Portal Styles */
+
+.agrinova_portal_header {
+    background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.agrinova_portal_header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.agrinova_portal_content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.agrinova_portal_card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.agrinova_portal_card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.agrinova_portal_footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 14px;
+}

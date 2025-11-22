@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mobile_depot_user,access.mobile.depot.user,model_mobile_depot,base.group_user,1,1,1,1
+access_mobile_retrait_user,access.mobile.retrait.user,model_mobile_retrait,base.group_user,1,1,1,1
+access_mobile_transfert_user,access.mobile.transfert.user,model_mobile_transfert,base.group_user,1,1,1,1

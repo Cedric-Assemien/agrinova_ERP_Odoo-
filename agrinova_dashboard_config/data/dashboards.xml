@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dashboard Groups -->
+    <record id="dashboard_group_agrinova_overview" model="spreadsheet.dashboard.group">
+        <field name="name">AGRINOVA - Vue d'Ensemble</field>
+    </record>
+
+    <record id="dashboard_group_agrinova_production" model="spreadsheet.dashboard.group">
+        <field name="name">AGRINOVA - Production</field>
+    </record>
+
+    <record id="dashboard_group_agrinova_commercial" model="spreadsheet.dashboard.group">
+        <field name="name">AGRINOVA - Commercial</field>
+    </record>
+
+    <record id="dashboard_group_agrinova_stock" model="spreadsheet.dashboard.group">
+        <field name="name">AGRINOVA - Stock &amp; Qualité</field>
+    </record>
+
+    <!-- Dashboard Vue d'Ensemble -->
+    <record id="dashboard_agrinova_overview" model="spreadsheet.dashboard">
+        <field name="name">Vue d'Ensemble AGRINOVA</field>
+        <field name="dashboard_group_id" ref="dashboard_group_agrinova_overview"/>
+        <field name="group_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- Dashboard Production -->
+    <record id="dashboard_agrinova_production" model="spreadsheet.dashboard">
+        <field name="name">Production AGRINOVA</field>
+        <field name="dashboard_group_id" ref="dashboard_group_agrinova_production"/>
+        <field name="group_ids" eval="[(4, ref('mrp.group_mrp_user'))]"/>
+    </record>
+
+    <!-- Dashboard Commercial -->
+    <record id="dashboard_agrinova_commercial" model="spreadsheet.dashboard">
+        <field name="name">Commercial AGRINOVA</field>
+        <field name="dashboard_group_id" ref="dashboard_group_agrinova_commercial"/>
+        <field name="group_ids" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+    </record>
+
+    <!-- Dashboard Stock &amp; Qualité -->
+    <record id="dashboard_agrinova_stock" model="spreadsheet.dashboard">
+        <field name="name">Stock &amp; Qualité AGRINOVA</field>
+        <field name="dashboard_group_id" ref="dashboard_group_agrinova_stock"/>
+        <field name="group_ids" eval="[(4, ref('stock.group_stock_user'))]"/>
+    </record>
+</odoo>

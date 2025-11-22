@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="email_template_expiry_alert" model="mail.template">
+        <field name="name">Alerte Péremption Produit</field>
+        <field name="model_id" ref="stock.model_stock_lot"/>
+        <field name="subject">⚠️ Alerte Péremption - Lot ${object.name}</field>
+        <field name="email_to">${object.company_id.email}</field>
+        <field name="body_html"><![CDATA[
+            <p>Bonjour,</p>
+            <p>Le lot <strong>${object.name}</strong> nécessite votre attention:</p>
+            <ul>
+                <li>Produit: ${object.product_id.name}</li>
+                <li>Quantité: ${object.product_qty} ${object.product_uom_id.name}</li>
+                <li>Date de péremption: ${object.expiration_date}</li>
+                <li>Jours restants: ${object.days_to_expiry}</li>
+                <li>Statut: ${object.alert_status}</li>
+            </ul>
+            <p>Action requise pour éviter les pertes!</p>
+            <p>Cordialement,<br/>AGRINOVA</p>
+        ]]></field>
+    </record>
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action pour Properties -->
+    <record id="estate_property_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">kanban,list,graph,calendar,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_available': 1}</field>
+    </record>
+
+    <!-- Action pour Property Offers -->
+    <record id="estate_property_offer_action" model="ir.actions.act_window">
+        <field name="name">Property Offer</field>
+        <field name="res_model">estate.property.offer</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Property offer will be added here</p>
+        </field>
+    </record>
+
+    <!-- Action pour Property Tags -->
+    <record id="estate_property_tag_action" model="ir.actions.act_window">
+        <field name="name">Property Tag</field>
+        <field name="res_model">estate.property.tag</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Property tag will be added here</p>
+        </field>
+    </record>
+
+    <!-- Action pour Property Types -->
+    <record id="estate_property_type_action" model="ir.actions.act_window">
+        <field name="name">Property Type</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Property type will be added here</p>
+        </field>
+    </record>
+
+    <!-- Action Server pour annuler un bien immobilier -->
+    <record id="estate_property_action_cancell_server" model="ir.actions.server">
+        <field name="name">Cancel</field>
+        <field name="model_id" ref="model_estate_property"/>
+        <field name="binding_model_id" ref="model_estate_property"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.set_to_cancell()
+        </field>
+    </record>
+
+    <!-- Action Server pour remettre un bien immobilier en statut "New" -->
+    <record id="estate_property_action_set_as_new_server" model="ir.actions.server">
+        <field name="name">Set as New</field>
+        <field name="model_id" ref="model_estate_property"/>
+        <field name="binding_model_id" ref="model_estate_property"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.set_as_new()
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_lot_form_quality" model="ir.ui.view">
+        <field name="name">stock.lot.form.quality</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='expiration_date']" position="after">
+                <field name="days_to_expiry" readonly="1"/>
+                <field name="alert_status" widget="badge" decoration-success="alert_status=='ok'" decoration-warning="alert_status=='warning'" decoration-danger="alert_status in ('expiring','expired')"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_stock_lot_tree_quality" model="ir.ui.view">
+        <field name="name">stock.lot.tree.quality</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='expiration_date']" position="after">
+                <field name="days_to_expiry"/>
+                <field name="alert_status" widget="badge"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

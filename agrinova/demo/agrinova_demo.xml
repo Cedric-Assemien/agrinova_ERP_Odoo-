@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data noupdate="1">
+        
+        <!-- Données de démonstration -->
+        <record id="demo_agrinova_config" model="agrinova.config">
+            <field name="name">Configuration Démo AGRINOVA</field>
+            <field name="active" eval="False"/>
+        </record>
+        
+    </data>
+</odoo>

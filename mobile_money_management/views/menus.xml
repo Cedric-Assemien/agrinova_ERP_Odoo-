@@ -1,0 +1,74 @@
+<odoo>
+    <menuitem id="menu_mobile_money_menu"
+              name="Mobile Money"
+              sequence="10"
+              />
+
+    <menuitem id="menu_mobile_depot"
+              name="Dépôts"
+              parent="menu_mobile_money_menu"
+              action="action_mobile_depot"
+              sequence="20"/>
+
+    <menuitem id="menu_mobile_retrait"
+              name="Retraits"
+              parent="menu_mobile_money_menu"
+              action="action_mobile_retrait"
+              sequence="30"/>
+
+    <menuitem id="menu_mobile_transfert"
+              name="Transferts Internationaux"
+              parent="menu_mobile_money_menu"
+              action="action_mobile_transfert"
+              sequence="40"/>
+
+    <menuitem id="menu_mobile_money_config"
+              name="Configuration"
+              parent="menu_mobile_money_menu"
+              sequence="50"
+              groups="base.group_system"/>
+    <!-- Sous-menu Analyses -->
+    <menuitem id="menu_mobile_analytics"
+              name="Analyses"
+              parent="menu_mobile_money_menu"
+              sequence="60"/>
+
+    <!-- Tableau de bord général -->
+    <menuitem id="menu_mobile_dashboard"
+              name="Tableau de Bord"
+              parent="menu_mobile_analytics"
+              action="action_mobile_money_dashboard_combined"
+              sequence="70"/>
+
+    <!-- Analyses par type d'opération -->
+    <menuitem id="menu_mobile_depot_analysis"
+              name="Analyses Dépôts"
+              parent="menu_mobile_analytics"
+              action="action_mobile_depot_analysis"
+              sequence="80"/>
+
+    <menuitem id="menu_mobile_retrait_analysis"
+              name="Analyses Retraits"
+              parent="menu_mobile_analytics"
+              action="action_mobile_retrait_analysis"
+              sequence="90"/>
+
+    <menuitem id="menu_mobile_transfert_analysis"
+              name="Analyses Transferts"
+              parent="menu_mobile_analytics"
+              action="action_mobile_transfert_analysis"
+              sequence="100"/>
+
+    <!-- Analyses spécialisées -->
+    <menuitem id="menu_mobile_timeline"
+              name="Évolution Temporelle"
+              parent="menu_mobile_analytics"
+              action="action_mobile_transfert_timeline"
+              sequence="110"/>
+
+    <menuitem id="menu_mobile_countries"
+              name="Répartition Géographique"
+              parent="menu_mobile_analytics"
+              action="action_mobile_transfert_countries"
+              sequence="120"/>
+</odoo>

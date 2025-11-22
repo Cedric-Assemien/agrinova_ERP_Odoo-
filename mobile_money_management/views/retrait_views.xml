@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Views Definition -->
+    <record id="view_mobile_retrait_tree" model="ir.ui.view">
+        <field name="name">mobile.retrait.tree</field>
+        <field name="model">mobile.retrait</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="reference"/>
+                <field name="client"/>
+                <field name="numero"/>
+                <field name="operateur"/>
+                <field name="compte_wave"/>
+                <field name="montant"/>
+                <field name="date_operation"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mobile_retrait_form" model="ir.ui.view">
+        <field name="name">mobile.retrait.form</field>
+        <field name="model">mobile.retrait</field>
+        <field name="arch" type="xml">
+            <form string="Retrait Mobile Money">
+                <sheet>
+                    <group>
+                        <field name="reference" readonly="1"/>
+                        <field name="client"/>
+                        <field name="numero"/>
+                        <field name="operateur" readonly="1"/>
+                        <field name="compte_wave"/>
+                        <field name="montant"/>
+                        <field name="date_operation" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mobile_retrait_kanban" model="ir.ui.view">
+        <field name="name">mobile.retrait.kanban</field>
+        <field name="model">mobile.retrait</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="client"/>
+                <field name="numero"/>
+                <field name="montant"/>
+                <field name="operateur"/>
+                <field name="compte_wave"/>
+                <field name="date_operation"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <div class="oe_kanban_content">
+                                <div class="oe_kanban_details">
+                                    <div class="o_kanban_record_title">
+                                        <strong><field name="client"/></strong>
+                                    </div>
+                                    <div class="o_kanban_record_subtitle">
+                                        <i class="fa fa-phone"/> <field name="numero"/>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <div class="badge badge-pill badge-danger">
+                                            - <field name="montant"/> FCFA
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <span class="badge badge-secondary">
+                                                <field name="operateur"/>
+                                            </span>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <span class="text-muted">
+                                                <field name="date_operation"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_mobile_retrait_graph" model="ir.ui.view">
+        <field name="name">mobile.retrait.graph</field>
+        <field name="model">mobile.retrait</field>
+        <field name="arch" type="xml">
+            <graph string="Analyses des Retraits Mobile Money"
+                   type="bar"
+                   stacked="False"
+                   sample="1">
+                <field name="date_operation" interval="week" type="row"/>
+                <field name="montant" type="measure"/>
+                <field name="operateur" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_mobile_retrait_graph_pie" model="ir.ui.view">
+        <field name="name">mobile.retrait.graph.pie</field>
+        <field name="model">mobile.retrait</field>
+        <field name="arch" type="xml">
+            <graph string="Répartition des Retraits par Opérateur"
+                   type="pie"
+                   sample="1">
+                <field name="operateur" type="row"/>
+                <field name="montant" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_mobile_retrait_pivot" model="ir.ui.view">
+        <field name="name">mobile.retrait.pivot</field>
+        <field name="model">mobile.retrait</field>
+        <field name="arch" type="xml">
+            <pivot string="Analyse des Retraits"
+                   sample="1">
+                <field name="date_operation" interval="month" type="row"/>
+                <field name="operateur" type="col"/>
+                <field name="montant" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_mobile_retrait_search" model="ir.ui.view">
+        <field name="name">mobile.retrait.search</field>
+        <field name="model">mobile.retrait</field>
+        <field name="arch" type="xml">
+            <search string="Recherche Retraits">
+                <field name="client"/>
+                <field name="numero"/>
+                <field name="operateur"/>
+                <field name="montant"/>
+                <field name="date_operation"/>
+
+                <filter string="Aujourd'hui" name="today"
+                        domain="[('date_operation', '&gt;=', context_today()), ('date_operation', '&lt;', (context_today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Cette semaine" name="this_week"
+                        domain="[('date_operation', '&gt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                <filter string="Ce mois" name="this_month"
+                        domain="[('date_operation', '&gt;=', context_today().strftime('%Y-%m-01'))]"/>
+                <filter string="Cette année" name="this_year"
+                        domain="[('date_operation', '&gt;=', context_today().strftime('%Y-01-01'))]"/>
+
+                <separator/>
+
+                <filter string="Montant > 10000" name="high_amount"
+                        domain="[('montant', '&gt;', 10000)]"/>
+                <filter string="Montant &lt; 1000" name="low_amount"
+                        domain="[('montant', '&lt;', 1000)]"/>
+
+                <separator/>
+
+                <filter string="Avec Wave" name="with_wave"
+                        domain="[('compte_wave', '=', True)]"/>
+                <filter string="Sans Wave" name="without_wave"
+                        domain="[('compte_wave', '=', False)]"/>
+
+                <group expand="1" string="Grouper par">
+                    <filter string="Client" name="group_client" context="{'group_by':'client'}"/>
+                    <filter string="Opérateur" name="group_operateur" context="{'group_by':'operateur'}"/>
+                    <filter string="Compte Wave" name="group_wave" context="{'group_by':'compte_wave'}"/>
+                    <filter string="Jour" name="group_day" context="{'group_by':'date_operation:day'}"/>
+                    <filter string="Mois" name="group_month" context="{'group_by':'date_operation:month'}"/>
+                    <filter string="Année" name="group_year" context="{'group_by':'date_operation:year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions Definition (Must be after Views) -->
+    <record id="action_mobile_retrait" model="ir.actions.act_window">
+        <field name="name">Retraits</field>
+        <field name="res_model">mobile.retrait</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer votre premier retrait Mobile Money
+            </p>
+        </field>
+    </record>
+
+    <record id="action_mobile_retrait_analysis" model="ir.actions.act_window">
+        <field name="name">Analyse des Retraits</field>
+        <field name="res_model">mobile.retrait</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                                      (0, 0, {'view_mode': 'graph', 'view_id': ref('view_mobile_retrait_graph')}),
+                                      (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_mobile_retrait_pivot')})]"/>
+        <field name="context">{'search_default_this_month': 1}</field>
+    </record>
+</odoo>

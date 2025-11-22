@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="whatsapp_template_order_confirm" model="whatsapp.template">
+        <field name="name">Confirmation Commande AGRINOVA</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="status">approved</field>
+        <field name="phone_field">partner_id.mobile</field>
+        <field name="body">Bonjour {{1}},
+
+Votre commande #{{2}} a été confirmée !
+Montant: {{3}} XOF
+Livraison prévue le: {{4}}
+
+Merci de votre confiance.
+AGRINOVA SARL</field>
+        <field name="header_type">text</field>
+        <field name="variable_ids" eval="[
+            (0, 0, {'name': '{{1}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'partner_id.name', 'demo_value': 'Client'}),
+            (0, 0, {'name': '{{2}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'name', 'demo_value': 'S00001'}),
+            (0, 0, {'name': '{{3}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'amount_total', 'demo_value': '10000'}),
+            (0, 0, {'name': '{{4}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'date_order', 'demo_value': '2025-01-01'}),
+        ]"/>
+    </record>
+
+    <record id="whatsapp_template_expiry_alert" model="whatsapp.template">
+        <field name="name">Alerte Péremption Stock</field>
+        <field name="model_id" ref="stock.model_stock_lot"/>
+        <field name="status">approved</field>
+        <field name="phone_field">company_id.phone</field>
+        <field name="body">⚠️ ALERTE QUALITÉ
+
+Produit: {{1}}
+Lot: {{2}}
+Date péremption: {{3}}
+Quantité: {{4}}
+
+Action requise !
+AGRINOVA</field>
+        <field name="header_type">text</field>
+        <field name="variable_ids" eval="[
+            (0, 0, {'name': '{{1}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'product_id.name', 'demo_value': 'Produit X'}),
+            (0, 0, {'name': '{{2}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'name', 'demo_value': 'LOT001'}),
+            (0, 0, {'name': '{{3}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'expiration_date', 'demo_value': '2025-12-31'}),
+            (0, 0, {'name': '{{4}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'product_qty', 'demo_value': '100'}),
+        ]"/>
+    </record>
+</odoo>
