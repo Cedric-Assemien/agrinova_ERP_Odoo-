@@ -11,6 +11,19 @@ class HrContract(models.Model):
         help='Numéro d\'immatriculation CNPS de l\'employé'
     )
     
+    cnps_category = fields.Selection([
+        ('non_cadre', 'Non Cadre'),
+        ('cadre', 'Cadre'),
+        ('cadre_superieur', 'Cadre Supérieur'),
+    ], string='Catégorie CNPS', default='non_cadre',
+       help='Catégorie professionnelle pour le calcul CNPS')
+    
+    tax_parts = fields.Float(
+        string='Nombre de parts fiscales',
+        default=1.0,
+        help='Nombre de parts pour le calcul de l\'impôt (1 pour célibataire, 1.5 pour marié, etc.)'
+    )
+    
     its_exempt = fields.Boolean(
         string='Exonéré ITS',
         default=False,

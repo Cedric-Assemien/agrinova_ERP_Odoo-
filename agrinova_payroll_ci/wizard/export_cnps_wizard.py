@@ -78,8 +78,10 @@ class ExportCNPSWizard(models.TransientModel):
         
         for payslip in self.payslip_ids:
             ws.cell(row=row_num, column=1, value=payslip.contract_id.cnps_number or '')
-            ws.cell(row=row_num, column=2, value=payslip.employee_id.name)
-            ws.cell(row=row_num, column=3, value=payslip.employee_id.firstname or '')
+            # Séparation Nom / Prénom basique
+            name_parts = (payslip.employee_id.name or '').partition(' ')
+            ws.cell(row=row_num, column=2, value=name_parts[0]) # Nom (premier mot)
+            ws.cell(row=row_num, column=3, value=name_parts[2]) # Prénom (reste)
             ws.cell(row=row_num, column=4, value=payslip.contract_id.wage)
             ws.cell(row=row_num, column=5, value=payslip.contract_id.cnps_base)
             ws.cell(row=row_num, column=6, value=payslip.cnps_employee)

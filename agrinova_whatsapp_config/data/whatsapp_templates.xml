@@ -46,4 +46,43 @@ AGRINOVA</field>
             (0, 0, {'name': '{{4}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'product_qty', 'demo_value': '100'}),
         ]"/>
     </record>
+    <record id="whatsapp_template_delivery_notification" model="whatsapp.template">
+        <field name="name">Notification de livraison</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="status">approved</field>
+        <field name="phone_field">partner_id.mobile</field>
+        <field name="body">Bonjour {{1}},
+
+Votre livraison {{2}} est en route !
+Nous vous informerons dès qu'elle sera arrivée.
+
+Merci,
+AGRINOVA</field>
+        <field name="header_type">text</field>
+        <field name="variable_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'name': '{{1}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'partner_id.name', 'demo_value': 'Client'}),
+            (0, 0, {'name': '{{2}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'name', 'demo_value': 'WH/OUT/00001'}),
+        ]"/>
+    </record>
+
+    <record id="whatsapp_template_low_stock_alert" model="whatsapp.template">
+        <field name="name">Alerte stock faible</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="status">approved</field>
+        <field name="phone_field">company_id.phone</field>
+        <field name="body">⚠️ ALERTE STOCK FAIBLE
+
+Le produit {{1}} a atteint un niveau critique.
+Stock actuel: {{2}}
+
+Veuillez prévoir un réapprovisionnement.
+AGRINOVA</field>
+        <field name="header_type">text</field>
+        <field name="variable_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'name': '{{1}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'name', 'demo_value': 'Produit Y'}),
+            (0, 0, {'name': '{{2}}', 'field_type': 'field', 'line_type': 'body', 'field_name': 'qty_available', 'demo_value': '5.0'}),
+        ]"/>
+    </record>
 </odoo>

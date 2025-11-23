@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 import requests
 import logging
 
@@ -36,13 +37,17 @@ class MobileDepot(models.Model):
     def action_create_payment(self):
         """Créer paiement Odoo depuis dépôt mobile money"""
         if not self.payment_id:
+            journal = self.env['account.journal'].search([('type', 'in', ('bank', 'cash'))], limit=1)
+            if not journal:
+                raise UserError(_("Aucun journal de type 'Banque' ou 'Espèces' n'a été trouvé. Veuillez en configurer un dans la comptabilité."))
+
             payment = self.env['account.payment'].create({
                 'payment_type': 'inbound',
                 'partner_type': 'customer',
                 'amount': self.montant,
                 'date': self.date_operation,
-                'ref': f"Mobile Money - {self.reference}",
-                'journal_id': self.env['account.journal'].search([('type', '=', 'bank')], limit=1).id,
+                'memo': f"Mobile Money - {self.reference}",
+                'journal_id': journal.id,
             })
             self.payment_id = payment.id
         return self.payment_id

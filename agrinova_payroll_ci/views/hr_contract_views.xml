@@ -6,14 +6,24 @@
         <field name="model">hr.contract</field>
         <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='wage']" position="after">
-                <field name="cnps_number"/>  
-                <field name="transport_allowance"/>
-                <field name="housing_allowance"/>
-                <field name="family_allowance"/>
-                <field name="cnps_base" readonly="1"/>
-                <field name="its_exempt"/>
+            <!-- Cibler la page "Informations sur le salaire" et ajouter un groupe -->
+            <xpath expr="//page[@name='information']" position="inside">
+                <group string="Spécificités Côte d'Ivoire">
+                    <group>
+                        <field name="cnps_number"/>
+                        <field name="cnps_category"/>
+                        <field name="tax_parts"/>
+                        <field name="its_exempt"/>
+                    </group>
+                    <group>
+                        <field name="transport_allowance"/>
+                        <field name="housing_allowance"/>
+                        <field name="family_allowance"/>
+                        <field name="cnps_base"/>
+                    </group>
+                </group>
             </xpath>
         </field>
     </record>
 </odoo>
+

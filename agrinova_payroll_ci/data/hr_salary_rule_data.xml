@@ -70,8 +70,8 @@ result = -payslip._calculate_its(net_imposable)
         <field name="struct_id" ref="payroll_structure_ci"/>
         <field name="amount_select">code</field>
         <field name="amount_python_compute">
-# Net = Brut - CNPS Employé - ITS
-result = categories.BRUT + categories.CNPS + categories.ITS
+# Net = Brut + CNPS Employé (négatif) + ITS (négatif)
+result = BASE + CNPS_EMP + ITS
         </field>
     </record>
 </odoo>
