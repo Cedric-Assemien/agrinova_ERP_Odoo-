@@ -73,6 +73,9 @@
         
         # Data
         'data/agrinova_data.xml',
+        'data/account_journal_data.xml',
+        'data/account_chart_data.xml',
+        'data/account_payment_term_data.xml',
         
         # Views - IMPORTANT: Load action definitions before menus that reference them
         'views/agrinova_config_views.xml',

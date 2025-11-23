@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Basic Chart of Accounts -->
+        <record id="account_receivable" model="account.account">
+            <field name="name">Clients</field>
+            <field name="code">411000</field>
+            <field name="account_type">asset_receivable</field>
+            <field name="reconcile" eval="True"/>
+        </record>
+
+        <record id="account_payable" model="account.account">
+            <field name="name">Fournisseurs</field>
+            <field name="code">401000</field>
+            <field name="account_type">liability_payable</field>
+            <field name="reconcile" eval="True"/>
+        </record>
+
+        <record id="account_income" model="account.account">
+            <field name="name">Ventes de marchandises</field>
+            <field name="code">701000</field>
+            <field name="account_type">income</field>
+        </record>
+
+        <record id="account_expense" model="account.account">
+            <field name="name">Achats de marchandises</field>
+            <field name="code">601000</field>
+            <field name="account_type">expense</field>
+        </record>
+
+    </data>
+</odoo>

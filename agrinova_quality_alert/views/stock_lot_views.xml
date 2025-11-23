@@ -23,4 +23,22 @@
             </xpath>
         </field>
     </record>
+    <record id="action_stock_lot_expiry_alert" model="ir.actions.act_window">
+        <field name="name">Alertes péremption</field>
+        <field name="res_model">stock.lot</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('alert_status', 'in', ['warning', 'expiring', 'expired'])]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Aucune alerte de péremption trouvée
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_stock_lot_expiry_alert"
+        name="Alertes péremption"
+        parent="quality_control.menu_quality_control"
+        action="action_stock_lot_expiry_alert"
+        sequence="20"/>
 </odoo>

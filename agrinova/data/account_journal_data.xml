@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Journal de Ventes -->
+        <record id="journal_sale_inv" model="account.journal">
+            <field name="name">Factures Clients</field>
+            <field name="type">sale</field>
+            <field name="code">INV</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="sequence">5</field>
+            <field name="currency_id" ref="base.XOF"/>
+        </record>
+    </data>
+</odoo>
