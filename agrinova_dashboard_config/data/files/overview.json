@@ -1,0 +1,177 @@
+{
+  "version": 21,
+  "sheets": [
+    {
+      "id": "sheet1",
+      "name": "Vue d'Ensemble",
+      "colNumber": 3,
+      "rowNumber": 10,
+      "rows": {},
+      "cols": {},
+      "merges": [],
+      "cells": {
+        "A1": {
+          "content": "AGRINOVA - Vue d'Ensemble",
+          "style": 1
+        },
+        "A3": {
+          "content": "Indicateurs Financiers",
+          "style": 2
+        },
+        "A5": {
+          "content": "Chiffre d'Affaires (Confirmé)",
+          "style": 3
+        },
+        "B5": {
+          "content": "=PIVOT.VALUE(1, \"price_subtotal\")",
+          "style": 4,
+          "format": 1
+        },
+        "A6": {
+          "content": "Achats Totaux (Confirmés)",
+          "style": 3
+        },
+        "B6": {
+          "content": "=PIVOT.VALUE(2, \"price_total\")",
+          "style": 4,
+          "format": 1
+        },
+        "A7": {
+          "content": "Trésorerie (Banque/Caisse)",
+          "style": 3
+        },
+        "B7": {
+          "content": "=PIVOT.VALUE(3, \"balance\")",
+          "style": 4,
+          "format": 1
+        }
+      },
+      "conditionalFormats": [],
+      "figures": [],
+      "tables": [],
+      "areGridLinesVisible": true,
+      "isVisible": true
+    }
+  ],
+  "styles": {
+    "1": {
+      "bold": true,
+      "fontSize": 20,
+      "textColor": "#007D83"
+    },
+    "2": {
+      "bold": true,
+      "fontSize": 14,
+      "fillColor": "#f2f2f2"
+    },
+    "3": {
+      "bold": true
+    },
+    "4": {
+      "align": "right"
+    }
+  },
+  "formats": {
+    "1": "#,##0.00"
+  },
+  "borders": {},
+  "revisionId": "agrinova-overview-1",
+  "uniqueFigureIds": true,
+  "odooVersion": 12,
+  "globalFilters": [],
+  "pivots": {
+    "1": {
+      "id": "1",
+      "formulaId": "1",
+      "type": "ODOO",
+      "model": "sale.report",
+      "domain": [
+        [
+          "state",
+          "in",
+          [
+            "sale",
+            "done"
+          ]
+        ]
+      ],
+      "measures": [
+        {
+          "id": "price_subtotal",
+          "fieldName": "price_subtotal"
+        }
+      ],
+      "columns": [],
+      "rows": [],
+      "context": {},
+      "name": "Sales",
+      "fieldMatching": {},
+      "sortedColumn": null
+    },
+    "2": {
+      "id": "2",
+      "formulaId": "2",
+      "type": "ODOO",
+      "model": "purchase.report",
+      "domain": [
+        [
+          "state",
+          "in",
+          [
+            "purchase",
+            "done"
+          ]
+        ]
+      ],
+      "measures": [
+        {
+          "id": "price_total",
+          "fieldName": "price_total"
+        }
+      ],
+      "columns": [],
+      "rows": [],
+      "context": {},
+      "name": "Purchases",
+      "fieldMatching": {},
+      "sortedColumn": null
+    },
+    "3": {
+      "id": "3",
+      "formulaId": "3",
+      "type": "ODOO",
+      "model": "account.move.line",
+      "domain": [
+        [
+          "parent_state",
+          "=",
+          "posted"
+        ],
+        [
+          "account_id.account_type",
+          "in",
+          [
+            "asset_cash",
+            "asset_bank"
+          ]
+        ]
+      ],
+      "measures": [
+        {
+          "id": "balance",
+          "fieldName": "balance"
+        }
+      ],
+      "columns": [],
+      "rows": [],
+      "context": {},
+      "name": "Cash",
+      "fieldMatching": {},
+      "sortedColumn": null
+    }
+  },
+  "pivotNextId": 4,
+  "lists": {},
+  "listNextId": 1,
+  "chartOdooMenusReferences": {}
+}

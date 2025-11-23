@@ -24,6 +24,7 @@
     'license': 'LGPL-3',
     'depends': [
         'account',
+        'account_accountant',
     ],
     'external_dependencies': {
         'python': ['requests', 'beautifulsoup4', 'lxml'],

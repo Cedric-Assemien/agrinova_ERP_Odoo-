@@ -1,0 +1,24 @@
+{
+    "version": 1,
+    "sheets": [
+        {
+            "id": "sheet1",
+            "name": "Commercial",
+            "cells": {
+                "A1": {
+                    "content": "AGRINOVA - Commercial",
+                    "style": 1
+                },
+                "A3": {
+                    "content": "Dashboard en cours de construction..."
+                }
+            },
+            "styles": {
+                "1": {
+                    "bold": true,
+                    "fontSize": 16
+                }
+            }
+        }
+    ]
+}

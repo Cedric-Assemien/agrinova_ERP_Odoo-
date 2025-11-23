@@ -1,0 +1,158 @@
+{
+    "version": 21,
+    "sheets": [
+        {
+            "id": "sheet1",
+            "name": "Production",
+            "colNumber": 3,
+            "rowNumber": 10,
+            "rows": {},
+            "cols": {},
+            "merges": [],
+            "cells": {
+                "A1": {
+                    "content": "AGRINOVA - Production",
+                    "style": 1
+                },
+                "A3": {
+                    "content": "Suivi de Production",
+                    "style": 2
+                },
+                "A5": {
+                    "content": "Ordres de Fabrication (À Faire)",
+                    "style": 3
+                },
+                "B5": {
+                    "content": "=PIVOT.VALUE(1, \"__count\")",
+                    "style": 4
+                },
+                "A6": {
+                    "content": "Ordres de Fabrication (Terminés)",
+                    "style": 3
+                },
+                "B6": {
+                    "content": "=PIVOT.VALUE(2, \"__count\")",
+                    "style": 4
+                },
+                "A7": {
+                    "content": "Ordres de Travail en Cours",
+                    "style": 3
+                },
+                "B7": {
+                    "content": "=PIVOT.VALUE(3, \"__count\")",
+                    "style": 4
+                }
+            },
+            "conditionalFormats": [],
+            "figures": [],
+            "tables": [],
+            "areGridLinesVisible": true,
+            "isVisible": true
+        }
+    ],
+    "styles": {
+        "1": {
+            "bold": true,
+            "fontSize": 20,
+            "textColor": "#007D83"
+        },
+        "2": {
+            "bold": true,
+            "fontSize": 14,
+            "fillColor": "#f2f2f2"
+        },
+        "3": {
+            "bold": true
+        },
+        "4": {
+            "align": "right"
+        }
+    },
+    "formats": {},
+    "borders": {},
+    "revisionId": "agrinova-production-1",
+    "uniqueFigureIds": true,
+    "odooVersion": 12,
+    "globalFilters": [],
+    "pivots": {
+        "1": {
+            "id": "1",
+            "formulaId": "1",
+            "type": "ODOO",
+            "model": "mrp.production",
+            "domain": [
+                [
+                    "state",
+                    "=",
+                    "confirmed"
+                ]
+            ],
+            "measures": [
+                {
+                    "id": "__count",
+                    "fieldName": "__count"
+                }
+            ],
+            "columns": [],
+            "rows": [],
+            "context": {},
+            "name": "MO To Do",
+            "fieldMatching": {},
+            "sortedColumn": null
+        },
+        "2": {
+            "id": "2",
+            "formulaId": "2",
+            "type": "ODOO",
+            "model": "mrp.production",
+            "domain": [
+                [
+                    "state",
+                    "=",
+                    "done"
+                ]
+            ],
+            "measures": [
+                {
+                    "id": "__count",
+                    "fieldName": "__count"
+                }
+            ],
+            "columns": [],
+            "rows": [],
+            "context": {},
+            "name": "MO Done",
+            "fieldMatching": {},
+            "sortedColumn": null
+        },
+        "3": {
+            "id": "3",
+            "formulaId": "3",
+            "type": "ODOO",
+            "model": "mrp.workorder",
+            "domain": [
+                [
+                    "state",
+                    "=",
+                    "progress"
+                ]
+            ],
+            "measures": [
+                {
+                    "id": "__count",
+                    "fieldName": "__count"
+                }
+            ],
+            "columns": [],
+            "rows": [],
+            "context": {},
+            "name": "WO Progress",
+            "fieldMatching": {},
+            "sortedColumn": null
+        }
+    },
+    "pivotNextId": 4,
+    "lists": {},
+    "listNextId": 1,
+    "chartOdooMenusReferences": {}
+}
